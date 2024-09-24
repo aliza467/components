@@ -1,0 +1,93 @@
+.dash{
+    height: 100vh; /* Ensure full viewport height */
+    width: 100vw;  /* Ensure full viewport width */
+    background-image: url('https://images.trvl-media.com/lodging/50000000/49110000/49102300/49102294/173722dc.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill'); 
+    background-size: cover; /* Make the image scale down/up while maintaining aspect ratio */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Ensure the image doesn't repeat */
+    overflow: hidden; /* Disable scrolling */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text{
+  font-size: 70px;
+    color: #000000;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    font-family: 'Playfair Display', serif; /* Elegant font */
+    animation: fadeIn 2s ease-in-out;
+}
+
+
+
+
+.room-booking-form {
+   
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: aqua;
+    
+    margin: 40px auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .form-header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(246, 246, 246);
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #ffffff;
+  }
+  
+  .form-input,
+  .form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  .form-input:focus,
+  .form-select:focus {
+    border-color: #007bff;
+  }
+  
+  .form-button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  

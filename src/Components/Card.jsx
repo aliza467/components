@@ -21,7 +21,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const Cards = () => {
+const Cards = ({image,description}) => {
   return (
     <Container sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
       <StyledCard>
@@ -29,15 +29,15 @@ const Cards = () => {
           component="img"
           alt="Card Image"
           height="200"
-          image="https://source.unsplash.com/random/800x600"
+          image={image}
           sx={{ borderTopLeftRadius: '16px', borderTopRightRadius: '16px' }}
         />
         <CardContent>
           <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', mb: 1 }}>
-            Beautiful Card Title
+            Bed Room
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            This is a brief description of the card content. It can be a summary or a tagline that adds context to the visual content.
+            {description}
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: 'space-between', paddingX: 2, paddingBottom: 2 }}>
@@ -50,6 +50,8 @@ const Cards = () => {
         </CardActions>
       </StyledCard>
     </Container>
+
+    
   );
 };
 

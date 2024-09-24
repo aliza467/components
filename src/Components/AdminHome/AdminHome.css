@@ -1,0 +1,14 @@
+.dash{
+    height: 100vh; /* Ensure full viewport height */
+    width: 100vw;  /* Ensure full viewport width */
+    background-image: url('https://png.pngtree.com/background/20230519/original/pngtree-two-rooms-that-are-well-lit-in-the-dark-picture-image_2663030.jpg'); 
+    background-size: cover; /* Make the image scale down/up while maintaining aspect ratio */
+     /* Center the image */
+    background-repeat: no-repeat; /* Ensure the image doesn't repeat */
+    
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

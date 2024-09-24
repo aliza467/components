@@ -1,0 +1,14 @@
+.back{
+    height: 100vh; /* Ensure full viewport height */
+    width: 100vw;  /* Ensure full viewport width */
+    background-image: url('https://static01.nyt.com/images/2018/12/05/t-magazine/05tmag-caribbean-hotels-slide-HSI6/05tmag-caribbean-hotels-slide-HSI6-superJumbo.jpg'); 
+    background-size: cover; /* Make the image scale down/up while maintaining aspect ratio */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Ensure the image doesn't repeat */
+    overflow: hidden; /* Disable scrolling */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -69,7 +69,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft2() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -124,32 +124,46 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-        <ListItem disablePadding onClick={()=>navigate('/admindashboard')}>
-            <ListItemButton>
-              <ListItemIcon>
-                <ShoppingCartIcon />
-              </ListItemIcon>
-              <ListItemText primary="Our Hotel" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding onClick={()=>navigate('/bookedrooms')}>
+          <ListItem disablePadding onClick={()=>navigate('/booking')}>
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Booked Rooms" />
+              <ListItemText primary="Booking" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding  onClick={()=>navigate('/contacinfo')}>
+          <ListItem disablePadding  onClick={()=>navigate('/ourroom')}>
             <ListItemButton>
               <ListItemIcon>
                 <InfoIcon />
               </ListItemIcon>
-              <ListItemText primary="Contact Info" />
+              <ListItemText primary="Our Rooms" />
             </ListItemButton>
           </ListItem>
-         
-          
+          <ListItem disablePadding onClick={()=>navigate('/contact')}>
+            <ListItemButton>
+              <ListItemIcon>
+                <ContactMailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Contact" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding onClick={()=>navigate('/home')}>
+            <ListItemButton>
+              <ListItemIcon>
+                <ShoppingCartIcon />
+              </ListItemIcon>
+              <ListItemText primary="Ambience" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding onClick={()=>navigate('/gallery')}>
+            <ListItemButton>
+              <ListItemIcon>
+                <ShoppingCartIcon />
+              </ListItemIcon>
+              <ListItemText primary="Gallery" />
+            </ListItemButton>
+          </ListItem>
          
         </List>
         <Divider />

@@ -3,8 +3,8 @@ import Signup from './Signup/Signup'
 import Login from './Login/Login'
 import { Route, Routes } from 'react-router-dom'
 
-import Home from './Screens/Home'
-import About from './Screens/About'
+import Home from './Screens/Home/Home'
+import About from './Screens/About/About'
 import Contact from './Screens/Contact'
 import Product from './Screens/Product'
 import ContactForm from './Components/ContactForm'
@@ -14,6 +14,13 @@ import RadioButtonComponent from './Components/RadioButton'
 import Buttons from './Components/Buttons'
 import Tables from './Components/Table'
 import { createTheme, ThemeProvider } from '@mui/material'
+import Main from './Screens/Main/Main'
+import User from './Screens/User/User'
+import Admin from './Screens/User/Admin/Admin'
+import OurRoom from './Screens/OurRoom/OurRoom'
+import Gallery from './Screens/Gallery/Gallery'
+import AdminDashboard from './Screens/AdminDasboard/AdminDashboard'
+import Booking from './Components/Booking/Booking'
 // import AuthState from './Routes/AuthState'
 // import PrivRoute from './Routes/PrivState'
 
@@ -42,13 +49,22 @@ function App() {
 
     
      <Routes>
-      <Route path="/" element={<Signup/>}/>
+      <Route path="/" element={<Main/>}/>
       <Route path="/login" element={<Login />}/>
+      <Route path="/signup" element={<Signup />}/>
       <Route path="/home" element={<Home />}/>
       <Route path="/about" element={<About/>}/>
       <Route path="/contact" element={<Contact/>}/>
       <Route path="/products" element={<Product/>}/>
+      <Route path="/user" element={<User/>}/>
+      <Route path="/admin" element={<Admin/>}/>
+      <Route path="/ourroom" element={<OurRoom/>}/>
+      <Route path="/gallery" element={<Gallery/>}/>
+      <Route path="/admindashboard" element={<AdminDashboard/>}/>
+      <Route path="/booking" element={<Booking/>}/>
       </Routes>
+
+      
 
       {/* <Routes>
         <Route element={<AuthState/>}>

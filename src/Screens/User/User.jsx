@@ -1,52 +1,58 @@
 import React, { useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../config/firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '../../config/firebase';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Importing CSS for styling
+import './User.css'
 
-function Login() {
+function User() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
   const navigate = useNavigate();
-
-  const handleLogin = async (e) => {
+  
+  const handleSignup = async (e) => {
     e.preventDefault();
-  
-
-    await signInWithEmailAndPassword(auth, email, password)
-    .then(async (userCredential) => {
     
-  
-      const getData = await getDoc(doc(db, "users", userCredential.user.uid));
-   
-  
-      localStorage.setItem("userId", userCredential.user.uid);
-      localStorage.setItem("userData", JSON.stringify(getData.data()));
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const uID = userCredential.user.uid;
+    const userObj = {
+        name,
+        email,
+      };
 
-      
-  
-      navigate("/home"); 
-    })
-    .catch((err) => {
-      console.log("Login error:", err);
-      setErrorMessage(err.message); 
-    });
+      await setDoc(doc(db, 'users', uID), userObj);
 
-  } 
+     navigate('/login');
 
-
+    } catch (error) {
+      console.error('Error during signup:', error);
+      setErrorMessage(error.message);
+    }
+  };
 
   return (
-    <div className='back' style={outerContainerStyle}>
-      <div style={containerStyle}>
-        <form style={formStyle}  onSubmit={handleLogin}>
-          <h2 style={headerStyle}>Login</h2>
+    <div className='back' style={containerStyle}>
+      <div style={formWrapperStyle}>
+        <form style={formStyle} onSubmit={handleSignup}>
+          <h1 style={headerStyle}>SignUp as User</h1>
           <div style={inputGroupStyle}>
-            <label style={labelStyle}>Email</label>
+            <label style={labelStyle}>Full Name</label>
             <input
+              placeholder="Enter your full name"
+              style={inputStyle}
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div style={inputGroupStyle}>
+            <label style={labelStyle}>Email Address</label>
+            <input
+              placeholder="Enter your email"
               style={inputStyle}
               type="email"
               value={email}
@@ -57,6 +63,7 @@ function Login() {
           <div style={inputGroupStyle}>
             <label style={labelStyle}>Password</label>
             <input
+              placeholder="Create a password"
               style={inputStyle}
               type="password"
               value={password}
@@ -64,19 +71,15 @@ function Login() {
               required
             />
           </div>
-          <button
-          onClick={() => navigate('/home')}
-            style={buttonStyle}
-            type="submit"
-          >
-            Login
+          <p style={alreadyHaveAccountStyle}>
+            Already have an account?{' '}
+            <a onClick={() => navigate('/login')} href="#" style={linkStyle}>
+              Log In
+            </a>
+          </p>
+          <button style={buttonStyle} type="submit" onClick={() => navigate('/home')}>
+            Sign Up
           </button>
-          <a
-            style={linkStyle}
-            onClick={() => navigate('/')}
-          >
-            Don't have an account?
-          </a>
           {errorMessage && <p style={errorStyle}>{errorMessage}</p>}
         </form>
       </div>
@@ -84,16 +87,16 @@ function Login() {
   );
 }
 
-const outerContainerStyle = {
+// Styles
+const containerStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
   backgroundColor: '#f0f4f8',
-  
 };
 
-const containerStyle = {
+const formWrapperStyle = {
   width: '100%',
   maxWidth: '600px',
   boxSizing: 'border-box',
@@ -139,6 +142,18 @@ const inputStyle = {
   transition: 'border 0.3s',
 };
 
+const alreadyHaveAccountStyle = {
+  fontSize: '0.9rem',
+  color: '#666',
+  marginBottom: '1.5rem',
+};
+
+const linkStyle = {
+  color: '#007bff',
+  textDecoration: 'none',
+  cursor: 'pointer',
+};
+
 const buttonStyle = {
   width: '100%',
   padding: '14px',
@@ -153,12 +168,6 @@ const buttonStyle = {
   boxSizing: 'border-box',
 };
 
-const linkStyle = {
-  color: '#007bff',
-  textDecoration: 'none',
-  cursor: 'pointer',
-};
-
 const errorStyle = {
   color: 'red',
   marginTop: '1rem',
@@ -166,4 +175,4 @@ const errorStyle = {
   fontSize: '0.9rem',
 };
 
-export default Login;
+export default User;
