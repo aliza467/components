@@ -1,61 +1,142 @@
 .room-booking-form {
-    max-width: 600px;
-    margin: 200px auto;
-    padding: 50px;
-    background-color: #48765f;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.form-header {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #16423c;
+}
+
+.form-container {
+  background-color: white;
+  padding: 30px;
+  width: 100%; /* Set width to 100% for responsiveness */
+  max-width: 600px; /* Ensure max-width for larger screens */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.form-input,
+.form-select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%; /* Make input fields full width */
+}
+
+.form-button {
+  background-color: #16423c;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* Make the button full width */
+}
+
+.form-button:hover {
+  background-color: #1a574d;
+}
+
+/* Pop-up styles */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.popup-button {
+  background-color: #16423c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.popup-button:hover {
+  background-color: #1a574d;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets and below (screens smaller than 768px) */
+@media (max-width: 768px) {
   .form-header {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #ffffff;
+    font-size: 1.5rem;
   }
-  
+
   .form-container {
-    display: flex;
-    flex-direction: column;
+    padding: 20px;
+    width: 90%; /* Reduce width for smaller screens */
   }
-  
-  .form-group {
+
+  .form-button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+/* For phones and smaller screens (screens smaller than 576px) */
+@media (max-width: 576px) {
+  .form-header {
+    font-size: 1.3rem;
     margin-bottom: 15px;
   }
-  
-  .form-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
+
+  .form-container {
+    padding: 15px;
+    width: 95%; /* Ensure form takes most of the screen width */
   }
-  
+
+  .form-button {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .form-label {
+    font-size: 1rem;
+  }
+
   .form-input,
   .form-select {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: border-color 0.3s;
+    padding: 8px;
   }
-  
-  .form-input:focus,
-  .form-select:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  .form-button {
-    padding: 10px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .form-button:hover {
-    background-color: #0056b3;
-  }
-  
+}
+

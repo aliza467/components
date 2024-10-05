@@ -22,7 +22,7 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate } from 'react-router-dom';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const drawerWidth = 240;
 
 // const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -100,7 +100,9 @@ export default function PersistentDrawerLeft2() {
   <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
     Hotel Management System
   </Typography>
-  <button onClick={()=>navigate('/')} style={{ marginLeft: 'auto', backgroundColor:"#16423C", color:"white" }}>Logout</button>
+  <IconButton color="inherit" onClick={() => navigate('/')} sx={{ marginLeft: 'auto' }}>
+    <AccountCircleIcon />
+</IconButton>
 </Toolbar>
       </AppBar>
       <Drawer

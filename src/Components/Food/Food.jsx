@@ -6,7 +6,7 @@ const Food = () => {
 
     
     <>
-    <h1 style={{ backgroundColor: "black", color: "white", marginTop: "100px" }}>Open Buffets</h1>
+    <h1 style={{ backgroundColor: "#16423C", color: "white", marginTop: "100px", textAlign:"center" }}>Open Buffets</h1>
     
     <div className="cuisine-container">
       <h2 className="cuisine-header">Buffet Options</h2>

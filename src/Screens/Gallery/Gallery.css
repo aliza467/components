@@ -1,0 +1,5 @@
+@media (max-width: 768px) {
+    .MuiCard-root {
+        max-width: 100%; /* Allow cards to take full width on small screens */
+    }
+}

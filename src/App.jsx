@@ -21,6 +21,9 @@ import OurRoom from './Screens/OurRoom/OurRoom'
 import Gallery from './Screens/Gallery/Gallery'
 import AdminDashboard from './Screens/AdminDasboard/AdminDashboard'
 import Booking from './Components/Booking/Booking'
+import BookedRooms from './Components/BookedRoom/BookedRoom'
+import ContactInfo from './Components/Contactin/Contactin'
+import AdminLogin from './Screens/User/Admin/Adminlogin'
 // import AuthState from './Routes/AuthState'
 // import PrivRoute from './Routes/PrivState'
 
@@ -50,6 +53,7 @@ function App() {
     
      <Routes>
       <Route path="/" element={<Main/>}/>
+      <Route path="/adminlogin" element={<AdminLogin />}/>
       <Route path="/login" element={<Login />}/>
       <Route path="/signup" element={<Signup />}/>
       <Route path="/home" element={<Home />}/>
@@ -62,6 +66,9 @@ function App() {
       <Route path="/gallery" element={<Gallery/>}/>
       <Route path="/admindashboard" element={<AdminDashboard/>}/>
       <Route path="/booking" element={<Booking/>}/>
+      <Route path="/bookedrooms" element={<BookedRooms/>}/>
+      <Route path="/contactinfo" element={<ContactInfo/>}/>
+      
       </Routes>
 
       

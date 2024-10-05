@@ -10,6 +10,7 @@ import {
   Container,
 } from '@mui/material';
 import { styled } from '@mui/system';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: 345,
@@ -22,6 +23,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 const Cards = ({image,description}) => {
+  const navigate= useNavigate()
   return (
     <Container sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
       <StyledCard>
@@ -41,12 +43,10 @@ const Cards = ({image,description}) => {
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: 'space-between', paddingX: 2, paddingBottom: 2 }}>
-          <Button size="small" color="primary" variant="contained" sx={{ textTransform: 'none', fontWeight: 600 }}>
-            Learn More
+          <Button onClick={()=>{navigate('/gallery')}} size="small" color="primary" variant="contained" sx={{ textTransform: 'none', fontWeight: 600 }}>
+            More
           </Button>
-          <Button size="small" color="secondary" variant="outlined" sx={{ textTransform: 'none', fontWeight: 600 }}>
-            Share
-          </Button>
+          
         </CardActions>
       </StyledCard>
     </Container>

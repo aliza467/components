@@ -11,7 +11,7 @@ const OurRoom = () => {
 
     <PersistentDrawerLeft2/>
 
-    <h1 style={{backgroundColor:"black", color:"white", marginTop:"100px"}}>Our Rooms</h1>
+    <h1 style={{backgroundColor:"#16423C", color:"white", marginTop:"100px", textAlign:"center"}}>Our Rooms</h1>
 
     <div className="card-row">
       <Cards image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCnIpdLOMSAcmTIAv-2IJ6BQFBOO-ma5bO5Q&s"}/>

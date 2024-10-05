@@ -1,7 +1,6 @@
 import React from 'react'
-import PersistentDrawerLeft from '../../Components/Navbar'
 import './About.css'
-import Footer from '../../Components/Footer/Footer'
+
 import PersistentDrawerLeft2 from '../../Components/AdminHome/Navbar2'
 
 const About = () => {
@@ -10,7 +9,7 @@ const About = () => {
 
     <PersistentDrawerLeft2/>
 
-    <h1 style={{backgroundColor:"black", color:"white", marginTop:"100px"}}>About us</h1>
+    <h1 style={{backgroundColor:"#16423C", color:"white", textAlign:'center'}}>About us</h1>
 
     
 

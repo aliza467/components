@@ -3,7 +3,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../config/firebase';
 import { useNavigate } from 'react-router-dom';
-import './User.css'
+import './User.css'; // Importing CSS for styling
 
 function User() {
   const [name, setName] = useState('');
@@ -11,27 +11,36 @@ function User() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-  
+
   const handleSignup = async (e) => {
-    e.preventDefault();
-    
+    e.preventDefault(); // Prevent page reload
+  
     try {
+      // Create the user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const uID = userCredential.user.uid;
-    const userObj = {
+      const uID = userCredential.user.uid; // Get the unique user ID
+  
+      // Prepare user object
+      const userObj = {
         name,
         email,
       };
-
+  
+      // Store user details in Firestore under the "users" collection
       await setDoc(doc(db, 'users', uID), userObj);
-
-     navigate('/login');
-
+  
+      // Redirect to admin dashboard after successful signup
+      navigate('/login');
+  
     } catch (error) {
+      // Display error if signup fails
       console.error('Error during signup:', error);
       setErrorMessage(error.message);
     }
   };
+  
+  
+  
 
   return (
     <div className='back' style={containerStyle}>
@@ -77,7 +86,7 @@ function User() {
               Log In
             </a>
           </p>
-          <button style={buttonStyle} type="submit" onClick={() => navigate('/home')}>
+          <button style={buttonStyle} type="submit" onSubmit={()=>{navigate('/dashboard')}} >
             Sign Up
           </button>
           {errorMessage && <p style={errorStyle}>{errorMessage}</p>}
@@ -115,7 +124,7 @@ const headerStyle = {
   marginBottom: '1.5rem',
   fontSize: '1.75rem',
   fontWeight: '600',
-  color: '#333',
+  color: 'white',
 };
 
 const inputGroupStyle = {
@@ -144,7 +153,7 @@ const inputStyle = {
 
 const alreadyHaveAccountStyle = {
   fontSize: '0.9rem',
-  color: '#666',
+  color: 'white',
   marginBottom: '1.5rem',
 };
 

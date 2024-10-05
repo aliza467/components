@@ -8,6 +8,7 @@ import {
 import { styled } from '@mui/system';
 import Footer from '../../Components/Footer/Footer';
 import PersistentDrawerLeft2 from '../../Components/AdminHome/Navbar2';
+import './Gallery.css'
 
 const Gallery = () => {
     const StyledCard = styled(Card)(({ theme }) => ({
@@ -23,7 +24,7 @@ const Gallery = () => {
     return (
       <>
         <PersistentDrawerLeft2 />
-        <h1 style={{ backgroundColor: "black", color: "white", marginTop: "100px" }}>Gallery</h1>
+        <h1 style={{ backgroundColor:"#16423C", color: "white", marginTop: "100px", textAlign:"center" }}>Gallery</h1>
 
         <Container sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3, mt: 5 }}>
           {/* Displaying four cards in one line */}

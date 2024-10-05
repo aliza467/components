@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="footer-container">
         {/* Company Info */}
         <div className="footer-section">
-          <h2>[Company Name]</h2>
+          <h2>ROVE</h2>
           <p>
             We provide innovative and sustainable solutions for your needs. Our focus is on delivering the highest quality services with integrity and customer satisfaction.
           </p>
@@ -54,7 +54,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="footer-bottom">
-        <p>&copy; 2024 [Company Name]. All rights reserved.</p>
+        <p>&copy; 2024 Rove. All rights reserved.</p>
       </div>
     </footer>
   );

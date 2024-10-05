@@ -1,67 +1,43 @@
 import React, { useState } from 'react';
-import { doc, setDoc } from 'firebase/firestore';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../../config/firebase';
 import { useNavigate } from 'react-router-dom';
-import './Admin.css'; // Importing CSS for styling
 
-function Admin() {
-  const [name, setName] = useState('');
+function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
   const navigate = useNavigate();
 
-  const handleSignup = async (e) => {
-    e.preventDefault(); // Prevent page reload
-  
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
     try {
-      // Create the user with email and password
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const uID = userCredential.user.uid; // Get the unique user ID
-  
-      // Prepare user object
-      const userObj = {
-        name,
-        email,
-      };
-  
-      // Store user details in Firestore under the "users" collection
-      await setDoc(doc(db, 'users', uID), userObj);
-  
-      // Redirect to admin dashboard after successful signup
-      navigate('/adminlogin');
-  
-    } catch (error) {
-      // Display error if signup fails
-      console.error('Error during signup:', error);
-      setErrorMessage(error.message);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+      const getData = await getDoc(doc(db, 'users', userCredential.user.uid));
+
+      localStorage.setItem('userId', userCredential.user.uid);
+      localStorage.setItem('userData', JSON.stringify(getData.data()));
+
+      // Redirect to admin dashboard after successful login
+      navigate('/admindashboard');
+    } catch (err) {
+      console.error('Login error:', err);
+      setErrorMessage(err.message); 
     }
   };
-  
-  
-  
 
   return (
-    <div className='back' style={containerStyle}>
-      <div style={formWrapperStyle}>
-        <form style={formStyle} onSubmit={handleSignup}>
-          <h1 style={headerStyle}>SignUp as Admin</h1>
+    <div className='back' style={outerContainerStyle}>
+      <div style={containerStyle}>
+        <form style={formStyle} onSubmit={handleLogin}>
+          <h2 style={headerStyle}>Login</h2>
           <div style={inputGroupStyle}>
-            <label style={labelStyle}>Full Name</label>
+            <label style={labelStyle}>Email</label>
             <input
-              placeholder="Enter your full name"
-              style={inputStyle}
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-          <div style={inputGroupStyle}>
-            <label style={labelStyle}>Email Address</label>
-            <input
-              placeholder="Enter your email"
               style={inputStyle}
               type="email"
               value={email}
@@ -72,7 +48,6 @@ function Admin() {
           <div style={inputGroupStyle}>
             <label style={labelStyle}>Password</label>
             <input
-              placeholder="Create a password"
               style={inputStyle}
               type="password"
               value={password}
@@ -80,15 +55,12 @@ function Admin() {
               required
             />
           </div>
-          <p style={alreadyHaveAccountStyle}>
-            Already have an account?{' '}
-            <a onClick={() => navigate('/adminlogin')} href="#" style={linkStyle}>
-              Log In
-            </a>
-          </p>
-          <button style={buttonStyle} type="submit " onSubmit={()=>{navigate('/admindashboard')}} >
-            Sign Up
+          <button style={buttonStyle} type="submit">
+            Login
           </button>
+          <p style={linkStyle} onClick={() => navigate('/signup')}>
+            Don't have an account? Sign Up
+          </p>
           {errorMessage && <p style={errorStyle}>{errorMessage}</p>}
         </form>
       </div>
@@ -96,8 +68,8 @@ function Admin() {
   );
 }
 
-// Styles
-const containerStyle = {
+// Styling remains the same as before
+const outerContainerStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -105,7 +77,7 @@ const containerStyle = {
   backgroundColor: '#f0f4f8',
 };
 
-const formWrapperStyle = {
+const containerStyle = {
   width: '100%',
   maxWidth: '600px',
   boxSizing: 'border-box',
@@ -124,7 +96,7 @@ const headerStyle = {
   marginBottom: '1.5rem',
   fontSize: '1.75rem',
   fontWeight: '600',
-  color: 'white',
+  color: '#333',
 };
 
 const inputGroupStyle = {
@@ -151,18 +123,6 @@ const inputStyle = {
   transition: 'border 0.3s',
 };
 
-const alreadyHaveAccountStyle = {
-  fontSize: '0.9rem',
-  color: 'white',
-  marginBottom: '1.5rem',
-};
-
-const linkStyle = {
-  color: '#007bff',
-  textDecoration: 'none',
-  cursor: 'pointer',
-};
-
 const buttonStyle = {
   width: '100%',
   padding: '14px',
@@ -177,6 +137,13 @@ const buttonStyle = {
   boxSizing: 'border-box',
 };
 
+const linkStyle = {
+  color: '#007bff',
+  textDecoration: 'none',
+  cursor: 'pointer',
+  marginTop: '1rem',
+};
+
 const errorStyle = {
   color: 'red',
   marginTop: '1rem',
@@ -184,5 +151,4 @@ const errorStyle = {
   fontSize: '0.9rem',
 };
 
-export default Admin;
-
+export default AdminLogin;

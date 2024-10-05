@@ -73,7 +73,7 @@ function Login() {
           </button>
           <a
             style={linkStyle}
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/signup')}
           >
             Don't have an account?
           </a>

@@ -19,7 +19,17 @@ const ContactForm = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    // Handle form submission (e.g., send data to an API)
+    
+    // Retrieve existing messages from localStorage
+    const existingMessages = JSON.parse(localStorage.getItem('contactMessages')) || [];
+
+    // Add the new message to the array
+    const updatedMessages = [...existingMessages, data];
+
+    // Save updated messages array back to localStorage
+    localStorage.setItem('contactMessages', JSON.stringify(updatedMessages));
+
+    alert('Message sent successfully!');
   };
 
   return (
@@ -107,4 +117,5 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+
 

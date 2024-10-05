@@ -24,11 +24,12 @@ const Main = () => {
 
         <div className="dropdown-container">
           <select className="dropdown" defaultValue="" onChange={handleNavigate}>
-            <option value="" disabled>
+            <option selected value="" disabled>
               Login As
             </option>
-            <option value="user">User Page</option>
-            <option value="admin">Admin Page</option>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+            
           </select>
         </div>
       </div>

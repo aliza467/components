@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PersistentDrawerLeft2 from '../AdminHome/Navbar2';
 import './Booking.css'; // Import the CSS file
+import Footer from '../Footer/Footer';
 
 const Booking = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,10 @@ const Booking = () => {
     date: '',
     timeSlot: '',
   });
+  const [isBooked, setIsBooked] = useState(false); // State to control pop-up visibility
+
+  // Predefined room options for the dropdown
+  const roomOptions = ['Resorts rooms', 'Boutique creative rooms', 'Luxury rooms', 'Lodge rooms'];
 
   // Handle form field changes
   const handleChange = (e) => {
@@ -20,7 +25,21 @@ const Booking = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    const existingBookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+    // Add the new booking to the list
+    const updatedBookings = [...existingBookings, formData];
+
+    // Save the updated list to local storage
+    localStorage.setItem('bookings', JSON.stringify(updatedBookings));
+
     console.log('Room booked:', formData);
+    setIsBooked(true); // Show the booking confirmation pop-up
+  };
+
+  // Close the pop-up
+  const closePopup = () => {
+    setIsBooked(false);
   };
 
   return (
@@ -31,15 +50,20 @@ const Booking = () => {
         <form onSubmit={handleSubmit} className="form-container">
           <div className="form-group">
             <label className="form-label">Room Name:</label>
-            <input
-              type="text"
+            <select
               name="roomName"
               value={formData.roomName}
               onChange={handleChange}
-              className="form-input"
-              placeholder="Enter room name"
+              className="form-select"
               required
-            />
+            >
+              <option value="">Select Room</option>
+              {roomOptions.map((room, index) => (
+                <option key={index} value={room}>
+                  {room}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group">
@@ -71,9 +95,23 @@ const Booking = () => {
             </select>
           </div>
 
-          <button type="submit" className="form-button">Book Room</button>
+          <button type="submit" className="form-button">
+            Book Room
+          </button>
         </form>
+
+        {/* Pop-up message */}
+        {isBooked && (
+          <div className="popup">
+            <div className="popup-content">
+              <p>Room Booked Successfully!</p>
+              <button onClick={closePopup} className="popup-button">Close</button>
+            </div>
+          </div>
+        )}
       </div>
+
+      <Footer/>
     </>
   );
 };
